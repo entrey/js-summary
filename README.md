@@ -2,15 +2,19 @@
 Brief basic JavaScript information
 
 ## 1. Event delegation
+[js.info]: https://javascript.info/event-delegation
+[js.info]
 
 The idea is that if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them – we put a single handler on their common ancestor.
-javascript.info/event-delegation
 
 ## 2. Bubbling and capturing
+[js.info]: https://javascript.info/bubbling-and-capturing
+[js.info]
+
 The bubbling principle - when an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.
 
 The process is called “bubbling”, because events “bubble” from the inner element up through parents like a bubble in the water.
-https://javascript.info/bubbling-and-capturing
+
 
 ## 3. Differences between .call and .apply?
 
@@ -49,11 +53,16 @@ The most notable limitation of WeakMap/WeakSet is the absence of iterations, and
 WeakMap/WeakSet are used as “secondary” data structures in addition to the “main” object storage. Once the object is removed from the main storage, if it is only found as the key of WeakMap/WeakSet, it will be cleaned up automatically.
 
 ## 7. Symbol
-[Symbol]: https://javascript.info/symbol "javascript.info"
-[Symbol] is a primitive type for unique identifiers. They are created with **Symbol()** call with an optional description (name).
+[js.info]: https://javascript.info/symbol
+[js.info]
+
+Is a primitive type for unique identifiers. They are created with **Symbol()** call with an optional description (name).
 
 
 ## 8. Data and Structure types
+[MDN]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Data_and_Structure_types
+[MDN]
+
 The latest ECMAScript standard defines nine types:
 
 Six primitive Data Types that are:
