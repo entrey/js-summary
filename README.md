@@ -17,6 +17,8 @@ The process is called “bubbling”, because events “bubble” from the inner
 
 
 ## 3. Differences between .call and .apply?
+[js.info]: https://javascript.info/call-apply-decorators
+[js.info]
 
 They both invoke the function they are called on, and take a ‘this’ keyword as their first argument. 
 The difference is that .call passes all arguments after the first one on to the invoked function, while .apply takes an array as its second argument and passes the members of that array as arguments.
@@ -79,9 +81,47 @@ Special primitive **null** (typeof 'object').
 
 **Function** (every Function constructor is derived from Object constructor).
 
-## 9. Pure functions
-They must take arguments.
-The same input (arguments) will always produce the same output (return).
-Pure functions rely only on local state and do not mutate external state (note: console.log changes global state).
-Pure functions do not produce side effects.
-Pure functions cannot call impure functions.
+## 9. Pure and Impure functions
+Pure functions:
+- must take arguments
+- the same input (arguments) will always produce the same output (return)
+- rely only on local state and do not mutate external state (note: console.log changes global state)
+- do not produce side effects
+- cannot call impure functions
+
+An impure function mutates state outside its scope. Any function that has side effects is impure.
+
+## 9. What is a Function?
+A function is a process which takes some input, called arguments, and produces some output called a return value.
+Functions may serve the following purposes:
+ - mapping: produce some output based on given inputs. A function maps input values to output values.
+ - procedures: a function may be called to perform a sequence of steps.
+ - I/O: some functions exist to communicate with other parts of the system, such as the screen, storage, system logs, or network.
+
+## 10. Higher-order Functions
+A higher-order function is a function that:
+ - accepts another function as an argument, or
+ - returns a function as a result.
+
+ In JavaScript, functions are first-class objects. They can be stored and passed around as values: we can assign a function to a variable or pass a function to another function.
+
+## 11. One-Way Data Flow and Two-Way Data Binding
+An application or framework with **one-way data flow** uses the model as the single source of truth.
+Messages, sent from a UI in the form of events, are signaling the model to update.
+Data is only flowing in one direction: from the model down. The UI input does not have direct access to the model. If we want to update state in response to changes from the UI, the input must send a message carrying the payload. The only way the UI can influence the model is through event that triggers some **setState()** method. The UI will never automagically update the model.
+
+In **two-way data binding**, the data flows in both directions. This means that the JS can update the model and the UI can do so as well.
+
+## 12. Destructuring assignment
+[js.info]: https://javascript.info/destructuring-assignment
+[js.info]
+
+Destructuring assignment is a special syntax that allows us to “unpack” arrays or objects into a bunch of variables. Destructuring also works great with complex functions that have a lot of parameters, default values, and so on.
+
+Examples:
+ - let [firstName, lastName] = ['John', 'Doe']; // assigns 'John' to firstName variable and 'Doe' to lastName variable
+ - let [firstName, surname] = 'John Doe'.split(' '); // same result
+ - let [firstName, , title] = ["Julius", "Caesar", "Consul"] // ignore elements using commas
+ - let [one, two, three] = new Set([1, 2, 3]) // works with any iterable
+ - let [a, b, c] = "123"; // assumes string as array ["1", "2", "3"]
+ - [guest, admin] = [admin, guest] // swap previously assigned values
