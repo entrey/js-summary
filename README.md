@@ -34,13 +34,20 @@ These differences make var worse than let most of the time. Block-level variable
 To declare a constant (unchanging) variable, use const instead of let.
 
 ## 5. Мар and WeakMap objects
-Map is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type. Unlike objects, keys are not converted to strings.
+[MDN - Map]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+[MDN - Map]
 
-WeakMap is Map-like collection that allows only objects as keys and removes them together with associated value once they become inaccessible by other means.
-WeakMap doesn’t prevent garbage-collection of key objects.
-WeakMap keys must be objects, not primitive values.
-If we’re working with an object that “belongs” to another code, maybe even a third-party library, and would like to store some data associated with it, that should only exist while the object is alive – then WeakMap is exactly what’s needed.
+**Map** is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type. Unlike objects, keys are not converted to strings.
+
+[MDN - WeakMap]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
+[MDN - WeakMap]
+
+**WeakMap** is Map-like collection that allows only objects as keys and removes them together with associated value once they become inaccessible by other means. If we’re working with an object that “belongs” to another code or 3rd-party library, and would like to store some data associated with it, that should only exist while the object is alive – then WeakMap is exactly what’s needed.
 We put the data to a WeakMap, using the object as the key, and when the object is garbage collected, that data will automatically disappear as well.
+
+Summary:
+ - WeakMap doesn’t prevent garbage-collection of key objects.
+ - WeakMap keys must be objects, not primitives.
 
 ## 6. Set and WeakSet objects
 [MDN-Set]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
@@ -48,11 +55,10 @@ We put the data to a WeakMap, using the object as the key, and when the object i
 
 The **Set** object stores unique values of any type, whether primitive values or object references.
 
-WeakSet is Set-like collection that stores only objects and removes them once they become inaccessible by other means.
-
-It is analogous to Set, but we may only add objects to WeakSet (not primitives).
-An object exists in the set while it is reachable from somewhere else.
-Like Set, it supports add, has and delete, but not size, keys and no iterations.
+The **WeakSet** is Set-like collection that stores only objects and removes them once they become inaccessible by other means.
+ - Only objects can be added to WeakSet (not primitives).
+ - An object exists in the set while it is reachable from somewhere else.
+ - Like Set, it supports add, has and delete, but not size, keys and no iterations.
 
 The most notable limitation of WeakMap/WeakSet is the absence of iterations, and inability to get all current content. That may appear inconvenient, but does not prevent WeakMap/WeakSet from doing their main job – be an “additional” storage of data for objects which are stored/managed at another place.
 WeakMap/WeakSet are used as “secondary” data structures in addition to the “main” object storage. Once the object is removed from the main storage, if it is only found as the key of WeakMap/WeakSet, it will be cleaned up automatically.
@@ -115,7 +121,7 @@ Data is only flowing in one direction: from the model down. The UI input does no
 
 In **two-way data binding**, the data flows in both directions. This means that the JS can update the model and the UI can do so as well.
 
-## 12. Destructuring assignment
+## 12. Destructuring Assignment
 [js.info]: https://javascript.info/destructuring-assignment
 [js.info]
 
@@ -128,8 +134,16 @@ Examples:
  - let [one, two, three] = new Set([1, 2, 3]) // works with any iterable
  - let [a, b, c] = "123"; // assumes string as array ["1", "2", "3"]
  - [guest, admin] = [admin, guest] // swap previously assigned values
+ - let {height: newName = 0, width, title} = {title: "Menu", height: 2, width: 1} // with Objects order doens't matter, newName = 2
+ - let width, height; ({width, height} = {width: 9, height: 9});
 
-## 13. Prototypal inheritance
+Summary:
+ - destructuring assignment allows for instantly mapping an object or array onto many variables.
+ - the full object syntax:  let {prop : varName = default, ...rest} = object
+ - the full array syntax: let [item1 = default, item2, ...rest] = array
+ - it is possible to extract data from nested arrays/objects, for that the left side must have the same structure as the right one.
+
+## 13. Prototypal Inheritance
 If we have a **user** object with its properties and methods, we can make **admin** and **guest** as slightly modified variants of **user**. We’d like to reuse what we have in **user**, not copy/reimplement its methods, just build a new object on top of it. Prototypal inheritance is a language feature that helps in that.
 
 In JavaScript, objects have a special hidden property **[[Prototype]]**, that is either null or references another object. That object is called “a prototype”.
