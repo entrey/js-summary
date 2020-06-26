@@ -2,6 +2,12 @@
 
 Brief JS basics
 
+<details>
+  <summary>JS definition</summary>
+  
+Javascript is a high-level single-threaded garbage-collected interpreted or just-in-time compiled prototype-based multi-paradigm dynamic language with a non-blocking event loop.
+</details>
+
 ## 1. Data and Structure types
 
 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Data_and_Structure_types)
@@ -26,14 +32,13 @@ The latest ECMAScript standard defines **nine** types, of which first seven is p
 </details>
 
 ## 2. What is a Function?
-A **function** is a process which takes some input, called arguments, and produces some output called a return value.
+A **function** is a process which takes some input (arguments) and produces some output (a return value).
 Functions may serve the following purposes:
-
 - mapping: produce some output based on given inputs. A function maps input values to output values.
 - procedures: a function may be called to perform a sequence of steps.
 - I/O: some functions exist to communicate with other parts of the system, such as the screen, storage, system logs, or network.
 
-In functions, the **this** keyword refers to the the object that the function belongs to.
+In functions, the `this` keyword refers to the the object that the function belongs to.
 
 <details>
   <summary>2.1. Pure and Impure functions</summary>
@@ -95,7 +100,6 @@ The difference is that `.call` passes all arguments after the first one on to th
 
 ## 3. Let, Const, Var
 There are two main differences of var compared to let/const:
-
 - **var** variables have no block scope, they are visible minimum at the function level.
 - **var** declarations are processed at function start (script start for globals).
 
@@ -117,7 +121,19 @@ It represents an event which takes place in the DOM. An event can be triggered b
 DOM elements can be set up as "event listeners" and execute code in response to handle them.
 
 <details>
-  <summary>4.1. Bubbling and capturing</summary>
+  <summary>4.1. DOM</summary>
+  
+[js.info](https://javascript.info/bubbling-and-capturing)
+
+The Document Object Model (**DOM**) connects web pages to scripts or programming languages by representing the structure of a document in memory.
+
+The DOM represents a document with a logical tree. Each branch of the tree ends in a **node**, and each node contains objects. DOM methods allow programmatic access to the tree. With them, you can change the document's structure, style, or content.
+
+Nodes can also have event handlers attached to them. Once an event is triggered, the event handlers get executed.
+</details>
+
+<details>
+  <summary>4.2. Bubbling and capturing</summary>
   
 [js.info](https://javascript.info/bubbling-and-capturing)
 
@@ -127,7 +143,7 @@ The process is called “bubbling”, because events “bubble” from the inner
 </details>
 
 <details>
-  <summary>4.2. Event delegation</summary>
+  <summary>4.3. Event delegation</summary>
   
 [js.info](https://javascript.info/event-delegation)
 
@@ -174,7 +190,7 @@ Is a primitive type for unique identifiers. They are created with **Symbol()** c
  - guaranteed to be unique. Even if we create many symbols with the same description, they are different values. The description is just a label that doesn’t affect anything.
  - allow us to create “hidden” properties of an object, that no other part of code can accidentally access or overwrite.
 
- If objects belongs to 3-rd party code, and that code also works with them, that is unsafe to add any fields to it. But a symbol cannot be accessed accidentally, the third-party code probably won’t even see it.
+ If object belongs to 3-rd party code, and that code also works with it, that is unsafe to add any fields to it. But a symbol cannot be accessed accidentally, the third-party code probably won’t even see it.
 
 Also, imagine that another script wants to have its own identifier inside user, for its own purposes. That may be another JavaScript library, so that the scripts are completely unaware of each other.
 
@@ -222,7 +238,7 @@ In JavaScript, objects have a special hidden property **\[[Prototype]]**, that i
 
 When we want to read a property from object, and it’s missing, JavaScript automatically takes it from the prototype.
 
-The property **\[[Prototype]]** is internal and hidden, but there are many ways to set it. One of them is to use the special name **\_\_proto\_\_**, like this:
+The property **\[[Prototype]]** is internal and hidden, but there are ways to set it. One of them is to use the special name **\_\_proto\_\_**, like this:
 
 ```
 let animal = { eats: true }; let rabbit = { jumps: true };
@@ -236,7 +252,7 @@ Note: **\_\_proto\_\_** is an old-fashoned getter/setter for **\[[Prototype]]**.
 
 Class inheritance is a way for one class to extend another class. So new functionality can be created on top of the existing.
 
-- **class Child extends Parent** - means Child.prototype.\_\_proto\_\_ = Parent.prototype, so methods are inherited.
+- `class Child extends Parent` - means Child.prototype.\_\_proto\_\_ = Parent.prototype, so methods are inherited.
 - When overriding a constructor, we must call parent constructor as **super()** in Child constructor before using **this**.
 - when method is overriden we still can use **super.methodName()** in a Child method to call Parent method.
 - methods remember their class/object in the internal **\[[HomeObject]]** property. That’s how **super** resolves parent methods. So it’s not safe to copy a method with **super** from one object to another.
@@ -259,7 +275,7 @@ If the promise has already been fulfilled or rejected when a corresponding handl
 ## 16. Equality operators
 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality)
 
-The **equality** operator (==) compare operands with implicit type coercion, while **strict equality** operator (===) requires that both operands be of the same type before comparing.
+The **abstract equality** operator (\==) compare operands with implicit type coercion, while **strict equality** operator (\===) requires that both operands be of the same type before comparing.
 
 Set of rules:
 - comparison of **Objects** will return true only if both operands reference the same object.
