@@ -38,7 +38,7 @@ Functions may serve the following purposes:
 - procedures: a function may be called to perform a sequence of steps.
 - I/O: some functions exist to communicate with other parts of the system, such as the screen, storage, system logs, or network.
 
-In functions, the `this` keyword refers to the the object that the function belongs to.
+In functions, the `this` keyword refers to the object that the function belongs to.
 
 <details>
   <summary>2.1. Pure and Impure functions</summary>
